@@ -30,7 +30,7 @@ type DeleteSubscriptionOK struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Subscription `json:"body,omitempty"`
+	Payload *v1.SubscriptionOAIGen `json:"body,omitempty"`
 }
 
 // NewDeleteSubscriptionOK creates DeleteSubscriptionOK with default headers values
@@ -40,13 +40,13 @@ func NewDeleteSubscriptionOK() *DeleteSubscriptionOK {
 }
 
 // WithPayload adds the payload to the delete subscription o k response
-func (o *DeleteSubscriptionOK) WithPayload(payload *v1.Subscription) *DeleteSubscriptionOK {
+func (o *DeleteSubscriptionOK) WithPayload(payload *v1.SubscriptionOAIGen) *DeleteSubscriptionOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete subscription o k response
-func (o *DeleteSubscriptionOK) SetPayload(payload *v1.Subscription) {
+func (o *DeleteSubscriptionOK) SetPayload(payload *v1.SubscriptionOAIGen) {
 	o.Payload = payload
 }
 
@@ -74,7 +74,7 @@ type DeleteSubscriptionBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewDeleteSubscriptionBadRequest creates DeleteSubscriptionBadRequest with default headers values
@@ -84,13 +84,13 @@ func NewDeleteSubscriptionBadRequest() *DeleteSubscriptionBadRequest {
 }
 
 // WithPayload adds the payload to the delete subscription bad request response
-func (o *DeleteSubscriptionBadRequest) WithPayload(payload *v1.Error) *DeleteSubscriptionBadRequest {
+func (o *DeleteSubscriptionBadRequest) WithPayload(payload *v1.ErrorOAIGen) *DeleteSubscriptionBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete subscription bad request response
-func (o *DeleteSubscriptionBadRequest) SetPayload(payload *v1.Error) {
+func (o *DeleteSubscriptionBadRequest) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -118,7 +118,7 @@ type DeleteSubscriptionNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewDeleteSubscriptionNotFound creates DeleteSubscriptionNotFound with default headers values
@@ -128,13 +128,13 @@ func NewDeleteSubscriptionNotFound() *DeleteSubscriptionNotFound {
 }
 
 // WithPayload adds the payload to the delete subscription not found response
-func (o *DeleteSubscriptionNotFound) WithPayload(payload *v1.Error) *DeleteSubscriptionNotFound {
+func (o *DeleteSubscriptionNotFound) WithPayload(payload *v1.ErrorOAIGen) *DeleteSubscriptionNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete subscription not found response
-func (o *DeleteSubscriptionNotFound) SetPayload(payload *v1.Error) {
+func (o *DeleteSubscriptionNotFound) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -162,7 +162,7 @@ type DeleteSubscriptionInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewDeleteSubscriptionInternalServerError creates DeleteSubscriptionInternalServerError with default headers values
@@ -172,13 +172,13 @@ func NewDeleteSubscriptionInternalServerError() *DeleteSubscriptionInternalServe
 }
 
 // WithPayload adds the payload to the delete subscription internal server error response
-func (o *DeleteSubscriptionInternalServerError) WithPayload(payload *v1.Error) *DeleteSubscriptionInternalServerError {
+func (o *DeleteSubscriptionInternalServerError) WithPayload(payload *v1.ErrorOAIGen) *DeleteSubscriptionInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete subscription internal server error response
-func (o *DeleteSubscriptionInternalServerError) SetPayload(payload *v1.Error) {
+func (o *DeleteSubscriptionInternalServerError) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -204,7 +204,7 @@ type DeleteSubscriptionDefault struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewDeleteSubscriptionDefault creates DeleteSubscriptionDefault with default headers values
@@ -230,13 +230,13 @@ func (o *DeleteSubscriptionDefault) SetStatusCode(code int) {
 }
 
 // WithPayload adds the payload to the delete subscription default response
-func (o *DeleteSubscriptionDefault) WithPayload(payload *v1.Error) *DeleteSubscriptionDefault {
+func (o *DeleteSubscriptionDefault) WithPayload(payload *v1.ErrorOAIGen) *DeleteSubscriptionDefault {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete subscription default response
-func (o *DeleteSubscriptionDefault) SetPayload(payload *v1.Error) {
+func (o *DeleteSubscriptionDefault) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 

@@ -41,7 +41,7 @@ type EmitEventParams struct {
 	  Required: true
 	  In: body
 	*/
-	Body *v1.Emission
+	Body *v1.EmissionOAIGen
 }
 
 // BindRequest both binds and validates a request, it assumes that complex things implement a Validatable(strfmt.Registry) error interface
@@ -55,7 +55,7 @@ func (o *EmitEventParams) BindRequest(r *http.Request, route *middleware.Matched
 
 	if runtime.HasBody(r) {
 		defer r.Body.Close()
-		var body v1.Emission
+		var body v1.EmissionOAIGen
 		if err := route.Consumer.Consume(r.Body, &body); err != nil {
 			if err == io.EOF {
 				res = append(res, errors.Required("body", "body"))

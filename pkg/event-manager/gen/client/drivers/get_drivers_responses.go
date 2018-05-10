@@ -93,7 +93,7 @@ func NewGetDriversInternalServerError() *GetDriversInternalServerError {
 Internal server error
 */
 type GetDriversInternalServerError struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *GetDriversInternalServerError) Error() string {
@@ -102,7 +102,7 @@ func (o *GetDriversInternalServerError) Error() string {
 
 func (o *GetDriversInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -126,7 +126,7 @@ Unknown error
 type GetDriversDefault struct {
 	_statusCode int
 
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 // Code gets the status code for the get drivers default response
@@ -140,7 +140,7 @@ func (o *GetDriversDefault) Error() string {
 
 func (o *GetDriversDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

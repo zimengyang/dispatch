@@ -109,7 +109,7 @@ func NewUpdateDriverTypeBadRequest() *UpdateDriverTypeBadRequest {
 Invalid Name supplied
 */
 type UpdateDriverTypeBadRequest struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *UpdateDriverTypeBadRequest) Error() string {
@@ -118,7 +118,7 @@ func (o *UpdateDriverTypeBadRequest) Error() string {
 
 func (o *UpdateDriverTypeBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -138,7 +138,7 @@ func NewUpdateDriverTypeNotFound() *UpdateDriverTypeNotFound {
 DriverType not found
 */
 type UpdateDriverTypeNotFound struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *UpdateDriverTypeNotFound) Error() string {
@@ -147,7 +147,7 @@ func (o *UpdateDriverTypeNotFound) Error() string {
 
 func (o *UpdateDriverTypeNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -167,7 +167,7 @@ func NewUpdateDriverTypeInternalServerError() *UpdateDriverTypeInternalServerErr
 Internal server error
 */
 type UpdateDriverTypeInternalServerError struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *UpdateDriverTypeInternalServerError) Error() string {
@@ -176,7 +176,7 @@ func (o *UpdateDriverTypeInternalServerError) Error() string {
 
 func (o *UpdateDriverTypeInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -200,7 +200,7 @@ Unknown error
 type UpdateDriverTypeDefault struct {
 	_statusCode int
 
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 // Code gets the status code for the update driver type default response
@@ -214,7 +214,7 @@ func (o *UpdateDriverTypeDefault) Error() string {
 
 func (o *UpdateDriverTypeDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

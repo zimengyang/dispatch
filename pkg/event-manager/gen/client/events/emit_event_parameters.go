@@ -73,7 +73,7 @@ type EmitEventParams struct {
 	  emission object
 
 	*/
-	Body *v1.Emission
+	Body *v1.EmissionOAIGen
 
 	timeout    time.Duration
 	Context    context.Context
@@ -114,13 +114,13 @@ func (o *EmitEventParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBody adds the body to the emit event params
-func (o *EmitEventParams) WithBody(body *v1.Emission) *EmitEventParams {
+func (o *EmitEventParams) WithBody(body *v1.EmissionOAIGen) *EmitEventParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the emit event params
-func (o *EmitEventParams) SetBody(body *v1.Emission) {
+func (o *EmitEventParams) SetBody(body *v1.EmissionOAIGen) {
 	o.Body = body
 }
 

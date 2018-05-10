@@ -74,7 +74,7 @@ type GetDriverTypeBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewGetDriverTypeBadRequest creates GetDriverTypeBadRequest with default headers values
@@ -84,13 +84,13 @@ func NewGetDriverTypeBadRequest() *GetDriverTypeBadRequest {
 }
 
 // WithPayload adds the payload to the get driver type bad request response
-func (o *GetDriverTypeBadRequest) WithPayload(payload *v1.Error) *GetDriverTypeBadRequest {
+func (o *GetDriverTypeBadRequest) WithPayload(payload *v1.ErrorOAIGen) *GetDriverTypeBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get driver type bad request response
-func (o *GetDriverTypeBadRequest) SetPayload(payload *v1.Error) {
+func (o *GetDriverTypeBadRequest) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -118,7 +118,7 @@ type GetDriverTypeNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewGetDriverTypeNotFound creates GetDriverTypeNotFound with default headers values
@@ -128,13 +128,13 @@ func NewGetDriverTypeNotFound() *GetDriverTypeNotFound {
 }
 
 // WithPayload adds the payload to the get driver type not found response
-func (o *GetDriverTypeNotFound) WithPayload(payload *v1.Error) *GetDriverTypeNotFound {
+func (o *GetDriverTypeNotFound) WithPayload(payload *v1.ErrorOAIGen) *GetDriverTypeNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get driver type not found response
-func (o *GetDriverTypeNotFound) SetPayload(payload *v1.Error) {
+func (o *GetDriverTypeNotFound) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -162,7 +162,7 @@ type GetDriverTypeInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewGetDriverTypeInternalServerError creates GetDriverTypeInternalServerError with default headers values
@@ -172,13 +172,13 @@ func NewGetDriverTypeInternalServerError() *GetDriverTypeInternalServerError {
 }
 
 // WithPayload adds the payload to the get driver type internal server error response
-func (o *GetDriverTypeInternalServerError) WithPayload(payload *v1.Error) *GetDriverTypeInternalServerError {
+func (o *GetDriverTypeInternalServerError) WithPayload(payload *v1.ErrorOAIGen) *GetDriverTypeInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get driver type internal server error response
-func (o *GetDriverTypeInternalServerError) SetPayload(payload *v1.Error) {
+func (o *GetDriverTypeInternalServerError) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -204,7 +204,7 @@ type GetDriverTypeDefault struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewGetDriverTypeDefault creates GetDriverTypeDefault with default headers values
@@ -230,13 +230,13 @@ func (o *GetDriverTypeDefault) SetStatusCode(code int) {
 }
 
 // WithPayload adds the payload to the get driver type default response
-func (o *GetDriverTypeDefault) WithPayload(payload *v1.Error) *GetDriverTypeDefault {
+func (o *GetDriverTypeDefault) WithPayload(payload *v1.ErrorOAIGen) *GetDriverTypeDefault {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get driver type default response
-func (o *GetDriverTypeDefault) SetPayload(payload *v1.Error) {
+func (o *GetDriverTypeDefault) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 

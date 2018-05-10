@@ -58,7 +58,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/emission"
+              "$ref": "#/definitions/emissionOAIGen"
             }
           }
         ],
@@ -66,31 +66,31 @@ func init() {
           "200": {
             "description": "Event emitted",
             "schema": {
-              "$ref": "#/definitions/emission"
+              "$ref": "#/definitions/emissionOAIGen"
             }
           },
           "400": {
             "description": "Invalid input",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "401": {
             "description": "Unauthorized Request",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -131,13 +131,13 @@ func init() {
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -175,31 +175,31 @@ func init() {
           "400": {
             "description": "Invalid input",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "401": {
             "description": "Unauthorized Request",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "409": {
             "description": "Already Exists",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -226,25 +226,25 @@ func init() {
           "400": {
             "description": "Invalid Name supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "Driver not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -283,25 +283,25 @@ func init() {
           "400": {
             "description": "Invalid Name supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "Driver not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -325,25 +325,25 @@ func init() {
           "400": {
             "description": "Invalid ID supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "Driver not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Generic error response",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -404,13 +404,13 @@ func init() {
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -448,31 +448,31 @@ func init() {
           "400": {
             "description": "Invalid input",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "401": {
             "description": "Unauthorized Request",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "409": {
             "description": "Already Exists",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -499,25 +499,25 @@ func init() {
           "400": {
             "description": "Invalid Name supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "Driver not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -556,25 +556,25 @@ func init() {
           "400": {
             "description": "Invalid Name supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "DriverType not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -598,25 +598,25 @@ func init() {
           "400": {
             "description": "Invalid ID supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "Driver not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Generic error response",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/Error"
             }
           }
         }
@@ -670,26 +670,26 @@ func init() {
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/subscription"
+                "$ref": "#/definitions/subscriptionOAIGen"
               }
             }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -713,7 +713,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/subscription"
+              "$ref": "#/definitions/subscriptionOAIGen"
             }
           }
         ],
@@ -721,37 +721,37 @@ func init() {
           "201": {
             "description": "Subscription created",
             "schema": {
-              "$ref": "#/definitions/subscription"
+              "$ref": "#/definitions/subscriptionOAIGen"
             }
           },
           "400": {
             "description": "Invalid input",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "401": {
             "description": "Unauthorized Request",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "409": {
             "description": "Already Exists",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -772,31 +772,31 @@ func init() {
           "200": {
             "description": "Successful operation",
             "schema": {
-              "$ref": "#/definitions/subscription"
+              "$ref": "#/definitions/subscriptionOAIGen"
             }
           },
           "400": {
             "description": "Invalid Name supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "Subscription not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -821,7 +821,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/subscription"
+              "$ref": "#/definitions/subscriptionOAIGen"
             }
           }
         ],
@@ -829,31 +829,31 @@ func init() {
           "200": {
             "description": "Successful operation",
             "schema": {
-              "$ref": "#/definitions/subscription"
+              "$ref": "#/definitions/subscriptionOAIGen"
             }
           },
           "400": {
             "description": "Invalid Name supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "Subscription not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -871,31 +871,31 @@ func init() {
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/subscription"
+              "$ref": "#/definitions/subscriptionOAIGen"
             }
           },
           "400": {
             "description": "Invalid ID supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "Subscription not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Generic error response",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -923,7 +923,316 @@ func init() {
     }
   },
   "definitions": {
-    "emission": {
+    "CloudEvent": {
+      "type": "object",
+      "required": [
+        "namespace",
+        "event-type",
+        "cloud-events-version",
+        "source-type",
+        "source-id",
+        "event-id"
+      ],
+      "properties": {
+        "cloud-events-version": {
+          "type": "string"
+        },
+        "content-type": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "event-id": {
+          "type": "string"
+        },
+        "event-time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "event-type": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[\\w\\d\\-\\.]+$"
+        },
+        "event-type-version": {
+          "type": "string"
+        },
+        "extensions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "schema-url": {
+          "type": "string"
+        },
+        "source-id": {
+          "type": "string"
+        },
+        "source-type": {
+          "type": "string"
+        }
+      }
+    },
+    "Config": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "Driver": {
+      "type": "object",
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "config": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Config"
+          }
+        },
+        "created-time": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "kind": {
+          "type": "string",
+          "pattern": "^[\\w\\d\\-]+$",
+          "readOnly": true
+        },
+        "modified-time": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "secrets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "$ref": "#/definitions/Status",
+          "readOnly": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tag"
+          }
+        },
+        "type": {
+          "type": "string",
+          "maxLength": 32
+        }
+      }
+    },
+    "DriverType": {
+      "type": "object",
+      "required": [
+        "image",
+        "name"
+      ],
+      "properties": {
+        "built-in": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "config": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Config"
+          }
+        },
+        "created-time": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "image": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "pattern": "^[\\w\\d\\-]+$",
+          "readOnly": true
+        },
+        "modified-time": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 32
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tag"
+          }
+        }
+      }
+    },
+    "Emission": {
+      "type": "object",
+      "required": [
+        "event"
+      ],
+      "properties": {
+        "emitted-time": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "event": {
+          "$ref": "#/definitions/CloudEvent"
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tag"
+          }
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "function-error": {
+          "type": "object"
+        },
+        "message": {
+          "type": "string"
+        },
+        "user-error": {
+          "type": "object"
+        }
+      }
+    },
+    "Status": {
+      "type": "string",
+      "enum": [
+        "INITIALIZED",
+        "CREATING",
+        "READY",
+        "UPDATING",
+        "ERROR",
+        "DELETING"
+      ]
+    },
+    "Subscription": {
+      "type": "object",
+      "required": [
+        "function",
+        "source-type",
+        "event-type",
+        "name"
+      ],
+      "properties": {
+        "created-time": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "event-type": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[\\w\\d\\-\\.]+$"
+        },
+        "function": {
+          "type": "string",
+          "pattern": "^[\\w\\d\\-]+$"
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "kind": {
+          "type": "string",
+          "pattern": "^[\\w\\d\\-]+$",
+          "readOnly": true
+        },
+        "modified-time": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[\\w\\d\\-]+$"
+        },
+        "secrets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source-type": {
+          "type": "string",
+          "maxLength": 32,
+          "pattern": "^[\\w\\d\\-]+$"
+        },
+        "status": {
+          "$ref": "#/definitions/Status",
+          "readOnly": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tag"
+          }
+        }
+      }
+    },
+    "Tag": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "emissionOAIGen": {
       "description": "Emission emission",
       "type": "object",
       "required": [
@@ -938,7 +1247,7 @@ func init() {
           "readOnly": true
         },
         "event": {
-          "$ref": "#/definitions/emissionEvent"
+          "$ref": "#/definitions/emissionOaiGenEvent"
         },
         "id": {
           "description": "id",
@@ -951,14 +1260,14 @@ func init() {
           "description": "tags",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/emissionTagsItems"
+            "$ref": "#/definitions/emissionOaiGenTagsItems"
           },
           "x-go-name": "Tags"
         }
       },
       "x-go-package": "github.com/vmware/dispatch/pkg/api/v1"
     },
-    "emissionEvent": {
+    "emissionOaiGenEvent": {
       "description": "CloudEvent cloud event",
       "type": "object",
       "required": [
@@ -1040,7 +1349,7 @@ func init() {
       "x-go-gen-location": "models",
       "x-go-package": "github.com/vmware/dispatch/pkg/api/v1"
     },
-    "emissionTagsItems": {
+    "emissionOaiGenTagsItems": {
       "description": "Tag tag",
       "type": "object",
       "properties": {
@@ -1058,7 +1367,7 @@ func init() {
       "x-go-gen-location": "models",
       "x-go-package": "github.com/vmware/dispatch/pkg/api/v1"
     },
-    "error": {
+    "errorOAIGen": {
       "description": "Error error",
       "type": "object",
       "required": [
@@ -1137,6 +1446,14 @@ func init() {
           "description": "name",
           "type": "string",
           "x-go-name": "Name"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Reason"
         },
         "secrets": {
           "description": "secrets",
@@ -1312,7 +1629,7 @@ func init() {
       "x-go-gen-location": "models",
       "x-go-package": "github.com/vmware/dispatch/pkg/api/v1"
     },
-    "subscription": {
+    "subscriptionOAIGen": {
       "description": "Subscription subscription",
       "type": "object",
       "required": [
@@ -1393,14 +1710,14 @@ func init() {
           "description": "tags",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/subscriptionTagsItems"
+            "$ref": "#/definitions/subscriptionOaiGenTagsItems"
           },
           "x-go-name": "Tags"
         }
       },
       "x-go-package": "github.com/vmware/dispatch/pkg/api/v1"
     },
-    "subscriptionTagsItems": {
+    "subscriptionOaiGenTagsItems": {
       "description": "Tag tag",
       "type": "object",
       "properties": {
@@ -1491,7 +1808,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/emission"
+              "$ref": "#/definitions/emissionOAIGen"
             }
           }
         ],
@@ -1499,31 +1816,31 @@ func init() {
           "200": {
             "description": "Event emitted",
             "schema": {
-              "$ref": "#/definitions/emission"
+              "$ref": "#/definitions/emissionOAIGen"
             }
           },
           "400": {
             "description": "Invalid input",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "401": {
             "description": "Unauthorized Request",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -1564,13 +1881,13 @@ func init() {
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -1608,31 +1925,31 @@ func init() {
           "400": {
             "description": "Invalid input",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "401": {
             "description": "Unauthorized Request",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "409": {
             "description": "Already Exists",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -1659,25 +1976,25 @@ func init() {
           "400": {
             "description": "Invalid Name supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "Driver not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -1716,25 +2033,25 @@ func init() {
           "400": {
             "description": "Invalid Name supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "Driver not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -1758,25 +2075,25 @@ func init() {
           "400": {
             "description": "Invalid ID supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "Driver not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Generic error response",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -1837,13 +2154,13 @@ func init() {
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -1881,31 +2198,31 @@ func init() {
           "400": {
             "description": "Invalid input",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "401": {
             "description": "Unauthorized Request",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "409": {
             "description": "Already Exists",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -1932,25 +2249,25 @@ func init() {
           "400": {
             "description": "Invalid Name supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "Driver not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -1989,25 +2306,25 @@ func init() {
           "400": {
             "description": "Invalid Name supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "DriverType not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -2031,25 +2348,25 @@ func init() {
           "400": {
             "description": "Invalid ID supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "Driver not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Generic error response",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/Error"
             }
           }
         }
@@ -2103,26 +2420,26 @@ func init() {
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/subscription"
+                "$ref": "#/definitions/subscriptionOAIGen"
               }
             }
           },
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -2146,7 +2463,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/subscription"
+              "$ref": "#/definitions/subscriptionOAIGen"
             }
           }
         ],
@@ -2154,37 +2471,37 @@ func init() {
           "201": {
             "description": "Subscription created",
             "schema": {
-              "$ref": "#/definitions/subscription"
+              "$ref": "#/definitions/subscriptionOAIGen"
             }
           },
           "400": {
             "description": "Invalid input",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "401": {
             "description": "Unauthorized Request",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "409": {
             "description": "Already Exists",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -2205,31 +2522,31 @@ func init() {
           "200": {
             "description": "Successful operation",
             "schema": {
-              "$ref": "#/definitions/subscription"
+              "$ref": "#/definitions/subscriptionOAIGen"
             }
           },
           "400": {
             "description": "Invalid Name supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "Subscription not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -2254,7 +2571,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/subscription"
+              "$ref": "#/definitions/subscriptionOAIGen"
             }
           }
         ],
@@ -2262,31 +2579,31 @@ func init() {
           "200": {
             "description": "Successful operation",
             "schema": {
-              "$ref": "#/definitions/subscription"
+              "$ref": "#/definitions/subscriptionOAIGen"
             }
           },
           "400": {
             "description": "Invalid Name supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "Subscription not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Unknown error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -2304,31 +2621,31 @@ func init() {
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/subscription"
+              "$ref": "#/definitions/subscriptionOAIGen"
             }
           },
           "400": {
             "description": "Invalid ID supplied",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "404": {
             "description": "Subscription not found",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           },
           "default": {
             "description": "Generic error response",
             "schema": {
-              "$ref": "#/definitions/error"
+              "$ref": "#/definitions/errorOAIGen"
             }
           }
         }
@@ -2356,7 +2673,316 @@ func init() {
     }
   },
   "definitions": {
-    "emission": {
+    "CloudEvent": {
+      "type": "object",
+      "required": [
+        "namespace",
+        "event-type",
+        "cloud-events-version",
+        "source-type",
+        "source-id",
+        "event-id"
+      ],
+      "properties": {
+        "cloud-events-version": {
+          "type": "string"
+        },
+        "content-type": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "event-id": {
+          "type": "string"
+        },
+        "event-time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "event-type": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[\\w\\d\\-\\.]+$"
+        },
+        "event-type-version": {
+          "type": "string"
+        },
+        "extensions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "schema-url": {
+          "type": "string"
+        },
+        "source-id": {
+          "type": "string"
+        },
+        "source-type": {
+          "type": "string"
+        }
+      }
+    },
+    "Config": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "Driver": {
+      "type": "object",
+      "required": [
+        "type",
+        "name"
+      ],
+      "properties": {
+        "config": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Config"
+          }
+        },
+        "created-time": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "kind": {
+          "type": "string",
+          "pattern": "^[\\w\\d\\-]+$",
+          "readOnly": true
+        },
+        "modified-time": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "secrets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "$ref": "#/definitions/Status",
+          "readOnly": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tag"
+          }
+        },
+        "type": {
+          "type": "string",
+          "maxLength": 32
+        }
+      }
+    },
+    "DriverType": {
+      "type": "object",
+      "required": [
+        "image",
+        "name"
+      ],
+      "properties": {
+        "built-in": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "config": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Config"
+          }
+        },
+        "created-time": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "image": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "pattern": "^[\\w\\d\\-]+$",
+          "readOnly": true
+        },
+        "modified-time": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 32
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tag"
+          }
+        }
+      }
+    },
+    "Emission": {
+      "type": "object",
+      "required": [
+        "event"
+      ],
+      "properties": {
+        "emitted-time": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "event": {
+          "$ref": "#/definitions/CloudEvent"
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tag"
+          }
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "function-error": {
+          "type": "object"
+        },
+        "message": {
+          "type": "string"
+        },
+        "user-error": {
+          "type": "object"
+        }
+      }
+    },
+    "Status": {
+      "type": "string",
+      "enum": [
+        "INITIALIZED",
+        "CREATING",
+        "READY",
+        "UPDATING",
+        "ERROR",
+        "DELETING"
+      ]
+    },
+    "Subscription": {
+      "type": "object",
+      "required": [
+        "function",
+        "source-type",
+        "event-type",
+        "name"
+      ],
+      "properties": {
+        "created-time": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "event-type": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[\\w\\d\\-\\.]+$"
+        },
+        "function": {
+          "type": "string",
+          "pattern": "^[\\w\\d\\-]+$"
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "kind": {
+          "type": "string",
+          "pattern": "^[\\w\\d\\-]+$",
+          "readOnly": true
+        },
+        "modified-time": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[\\w\\d\\-]+$"
+        },
+        "secrets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source-type": {
+          "type": "string",
+          "maxLength": 32,
+          "pattern": "^[\\w\\d\\-]+$"
+        },
+        "status": {
+          "$ref": "#/definitions/Status",
+          "readOnly": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tag"
+          }
+        }
+      }
+    },
+    "Tag": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "emissionOAIGen": {
       "description": "Emission emission",
       "type": "object",
       "required": [
@@ -2371,7 +2997,7 @@ func init() {
           "readOnly": true
         },
         "event": {
-          "$ref": "#/definitions/emissionEvent"
+          "$ref": "#/definitions/emissionOaiGenEvent"
         },
         "id": {
           "description": "id",
@@ -2384,14 +3010,14 @@ func init() {
           "description": "tags",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/emissionTagsItems"
+            "$ref": "#/definitions/emissionOaiGenTagsItems"
           },
           "x-go-name": "Tags"
         }
       },
       "x-go-package": "github.com/vmware/dispatch/pkg/api/v1"
     },
-    "emissionEvent": {
+    "emissionOaiGenEvent": {
       "description": "CloudEvent cloud event",
       "type": "object",
       "required": [
@@ -2473,7 +3099,7 @@ func init() {
       "x-go-gen-location": "models",
       "x-go-package": "github.com/vmware/dispatch/pkg/api/v1"
     },
-    "emissionTagsItems": {
+    "emissionOaiGenTagsItems": {
       "description": "Tag tag",
       "type": "object",
       "properties": {
@@ -2491,7 +3117,7 @@ func init() {
       "x-go-gen-location": "models",
       "x-go-package": "github.com/vmware/dispatch/pkg/api/v1"
     },
-    "error": {
+    "errorOAIGen": {
       "description": "Error error",
       "type": "object",
       "required": [
@@ -2570,6 +3196,14 @@ func init() {
           "description": "name",
           "type": "string",
           "x-go-name": "Name"
+        },
+        "reason": {
+          "description": "reason",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Reason"
         },
         "secrets": {
           "description": "secrets",
@@ -2745,7 +3379,7 @@ func init() {
       "x-go-gen-location": "models",
       "x-go-package": "github.com/vmware/dispatch/pkg/api/v1"
     },
-    "subscription": {
+    "subscriptionOAIGen": {
       "description": "Subscription subscription",
       "type": "object",
       "required": [
@@ -2826,14 +3460,14 @@ func init() {
           "description": "tags",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/subscriptionTagsItems"
+            "$ref": "#/definitions/subscriptionOaiGenTagsItems"
           },
           "x-go-name": "Tags"
         }
       },
       "x-go-package": "github.com/vmware/dispatch/pkg/api/v1"
     },
-    "subscriptionTagsItems": {
+    "subscriptionOaiGenTagsItems": {
       "description": "Tag tag",
       "type": "object",
       "properties": {

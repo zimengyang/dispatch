@@ -30,7 +30,7 @@ type AddSubscriptionCreated struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Subscription `json:"body,omitempty"`
+	Payload *v1.SubscriptionOAIGen `json:"body,omitempty"`
 }
 
 // NewAddSubscriptionCreated creates AddSubscriptionCreated with default headers values
@@ -40,13 +40,13 @@ func NewAddSubscriptionCreated() *AddSubscriptionCreated {
 }
 
 // WithPayload adds the payload to the add subscription created response
-func (o *AddSubscriptionCreated) WithPayload(payload *v1.Subscription) *AddSubscriptionCreated {
+func (o *AddSubscriptionCreated) WithPayload(payload *v1.SubscriptionOAIGen) *AddSubscriptionCreated {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the add subscription created response
-func (o *AddSubscriptionCreated) SetPayload(payload *v1.Subscription) {
+func (o *AddSubscriptionCreated) SetPayload(payload *v1.SubscriptionOAIGen) {
 	o.Payload = payload
 }
 
@@ -74,7 +74,7 @@ type AddSubscriptionBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewAddSubscriptionBadRequest creates AddSubscriptionBadRequest with default headers values
@@ -84,13 +84,13 @@ func NewAddSubscriptionBadRequest() *AddSubscriptionBadRequest {
 }
 
 // WithPayload adds the payload to the add subscription bad request response
-func (o *AddSubscriptionBadRequest) WithPayload(payload *v1.Error) *AddSubscriptionBadRequest {
+func (o *AddSubscriptionBadRequest) WithPayload(payload *v1.ErrorOAIGen) *AddSubscriptionBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the add subscription bad request response
-func (o *AddSubscriptionBadRequest) SetPayload(payload *v1.Error) {
+func (o *AddSubscriptionBadRequest) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -118,7 +118,7 @@ type AddSubscriptionUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewAddSubscriptionUnauthorized creates AddSubscriptionUnauthorized with default headers values
@@ -128,13 +128,13 @@ func NewAddSubscriptionUnauthorized() *AddSubscriptionUnauthorized {
 }
 
 // WithPayload adds the payload to the add subscription unauthorized response
-func (o *AddSubscriptionUnauthorized) WithPayload(payload *v1.Error) *AddSubscriptionUnauthorized {
+func (o *AddSubscriptionUnauthorized) WithPayload(payload *v1.ErrorOAIGen) *AddSubscriptionUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the add subscription unauthorized response
-func (o *AddSubscriptionUnauthorized) SetPayload(payload *v1.Error) {
+func (o *AddSubscriptionUnauthorized) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -162,7 +162,7 @@ type AddSubscriptionConflict struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewAddSubscriptionConflict creates AddSubscriptionConflict with default headers values
@@ -172,13 +172,13 @@ func NewAddSubscriptionConflict() *AddSubscriptionConflict {
 }
 
 // WithPayload adds the payload to the add subscription conflict response
-func (o *AddSubscriptionConflict) WithPayload(payload *v1.Error) *AddSubscriptionConflict {
+func (o *AddSubscriptionConflict) WithPayload(payload *v1.ErrorOAIGen) *AddSubscriptionConflict {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the add subscription conflict response
-func (o *AddSubscriptionConflict) SetPayload(payload *v1.Error) {
+func (o *AddSubscriptionConflict) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -206,7 +206,7 @@ type AddSubscriptionInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewAddSubscriptionInternalServerError creates AddSubscriptionInternalServerError with default headers values
@@ -216,13 +216,13 @@ func NewAddSubscriptionInternalServerError() *AddSubscriptionInternalServerError
 }
 
 // WithPayload adds the payload to the add subscription internal server error response
-func (o *AddSubscriptionInternalServerError) WithPayload(payload *v1.Error) *AddSubscriptionInternalServerError {
+func (o *AddSubscriptionInternalServerError) WithPayload(payload *v1.ErrorOAIGen) *AddSubscriptionInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the add subscription internal server error response
-func (o *AddSubscriptionInternalServerError) SetPayload(payload *v1.Error) {
+func (o *AddSubscriptionInternalServerError) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -248,7 +248,7 @@ type AddSubscriptionDefault struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewAddSubscriptionDefault creates AddSubscriptionDefault with default headers values
@@ -274,13 +274,13 @@ func (o *AddSubscriptionDefault) SetStatusCode(code int) {
 }
 
 // WithPayload adds the payload to the add subscription default response
-func (o *AddSubscriptionDefault) WithPayload(payload *v1.Error) *AddSubscriptionDefault {
+func (o *AddSubscriptionDefault) WithPayload(payload *v1.ErrorOAIGen) *AddSubscriptionDefault {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the add subscription default response
-func (o *AddSubscriptionDefault) SetPayload(payload *v1.Error) {
+func (o *AddSubscriptionDefault) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 

@@ -33,6 +33,10 @@ import (
 	"github.com/vmware/dispatch/pkg/secret-store/gen/client/secret"
 )
 
+const (
+	eventDriverLabel = "event-driver"
+)
+
 type k8sBackend struct {
 	clientset     *kubernetes.Clientset
 	config        ConfigOpts
@@ -116,7 +120,7 @@ func (k *k8sBackend) makeDeploymentSpec(driver *entities.Driver) (*v1beta1.Deplo
 				ObjectMeta: metav1.ObjectMeta{
 					Name: fullname,
 					Labels: map[string]string{
-						"app": "event-driver",
+						"app": eventDriverLabel,
 					},
 				},
 				Spec: corev1.PodSpec{
@@ -158,8 +162,10 @@ func (k *k8sBackend) Deploy(driver *entities.Driver) error {
 
 	result, err := k.clientset.ExtensionsV1beta1().Deployments(k.config.DriverNamespace).Create(deploymentSpec)
 	if err != nil {
-		err = &errors.DriverError{
-			Err: ewrapper.Wrapf(err, "k8s: error creating a deployment"),
+		if k8serrors.IsAlreadyExists(err) {
+			err = &EventdriverErrorDeploymentAlreadyExists{
+				Err: ewrapper.Wrapf(err, "k8s: error creating a deployment"),
+			}
 		}
 		log.Errorln(err)
 		return err
@@ -171,14 +177,13 @@ func (k *k8sBackend) Deploy(driver *entities.Driver) error {
 		log.Debugf("k8s: json marshal error")
 	}
 
-	log.Debugf("k8s: deployment=%s created", getDriverFullName(driver))
 	return nil
 }
 
 func isEventDriver(deployment *v1beta1.Deployment) bool {
 	if deployment != nil {
 		val, ok := deployment.Labels["app"]
-		if ok && val == "event-driver" {
+		if ok && val == eventDriverLabel {
 			return true
 		}
 	}
@@ -192,12 +197,12 @@ func (k *k8sBackend) Delete(driver *entities.Driver) error {
 	deployment, err := k.clientset.ExtensionsV1beta1().Deployments(k.config.DriverNamespace).Get(fullname, metav1.GetOptions{})
 	if err != nil {
 		if k8serrors.IsNotFound(err) {
-			err = &errors.ObjectNotFoundError{
+			err = &EventdriverErrorDeploymentNotFound{
 				Err: ewrapper.Wrapf(err, "k8s: deployment=%s not found", fullname),
 			}
 		} else {
-			err = &errors.DriverError{
-				Err: ewrapper.Wrapf(err, "k8s: deployment=%s unexpected error"),
+			err = &EventdriverErrorUnknown{
+				Err: ewrapper.Wrapf(err, "k8s: deployment=%s unexpected error", fullname),
 			}
 		}
 		log.Errorln(err)
@@ -206,7 +211,7 @@ func (k *k8sBackend) Delete(driver *entities.Driver) error {
 
 	if !isEventDriver(deployment) {
 		err = &errors.DriverError{
-			Err: ewrapper.Wrapf(err, "k8s: deployment=%s: deleting a NON-event-driver deployment"),
+			Err: ewrapper.Wrapf(err, "k8s: deployment=%s: deleting a NON-event-driver deployment", fullname),
 		}
 		return err
 	}
@@ -223,7 +228,7 @@ func (k *k8sBackend) Delete(driver *entities.Driver) error {
 			}
 		} else {
 			err = &errors.DriverError{
-				Err: ewrapper.Wrapf(err, "k8s: deployment=%s unexpected error"),
+				Err: ewrapper.Wrapf(err, "k8s: deployment=%s unexpected error", fullname),
 			}
 		}
 		log.Errorln(err)

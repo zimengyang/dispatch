@@ -73,7 +73,7 @@ type AddSubscriptionParams struct {
 	  subscription object
 
 	*/
-	Body *v1.Subscription
+	Body *v1.SubscriptionOAIGen
 
 	timeout    time.Duration
 	Context    context.Context
@@ -114,13 +114,13 @@ func (o *AddSubscriptionParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithBody adds the body to the add subscription params
-func (o *AddSubscriptionParams) WithBody(body *v1.Subscription) *AddSubscriptionParams {
+func (o *AddSubscriptionParams) WithBody(body *v1.SubscriptionOAIGen) *AddSubscriptionParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the add subscription params
-func (o *AddSubscriptionParams) SetBody(body *v1.Subscription) {
+func (o *AddSubscriptionParams) SetBody(body *v1.SubscriptionOAIGen) {
 	o.Body = body
 }
 

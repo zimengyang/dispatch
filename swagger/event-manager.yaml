@@ -618,4 +618,226 @@ paths:
         default:
           description: Generic error response
           schema:
-            $ref: './models.json#/definitions/Error'
+            $ref: '#/definitions/Error'
+definitions:
+  Tag:
+    type: object
+    properties:
+      key:
+        type: string
+      value:
+        type: string
+  Status:
+    type: string
+    enum:
+    - INITIALIZED
+    - CREATING
+    - READY
+    - UPDATING
+    - ERROR
+    - DELETING
+  Subscription:
+    type: object
+    required:
+    - function
+    - source-type
+    - event-type
+    - name
+    properties:
+      id:
+        type: string
+        format: uuid
+        readOnly: true
+      name:
+        type: string
+        pattern: '^[\w\d\-]+$'
+      kind:
+        type: string
+        pattern: '^[\w\d\-]+$'
+        readOnly: true
+      source-type:
+        type: string
+        pattern: '^[\w\d\-]+$'
+        maxLength: 32
+      event-type:
+        type: string
+        pattern: '^[\w\d\-\.]+$'
+        maxLength: 128
+      function:
+        type: string
+        pattern: '^[\w\d\-]+$'
+      secrets:
+        type: array
+        items:
+          type: string
+      tags:
+        type: array
+        items:
+          $ref: '#/definitions/Tag'
+      created-time:
+        type: integer
+        readOnly: true
+      modified-time:
+        type: integer
+        readOnly: true
+      status:
+        $ref: '#/definitions/Status'
+        readOnly: true
+  Emission:
+    type: object
+    required:
+    - event
+    properties:
+      id:
+        type: string
+        format: uuid
+        readOnly: true
+      event:
+         $ref: '#/definitions/CloudEvent'
+      emitted-time:
+        type: integer
+        readOnly: true
+      tags:
+        type: array
+        items:
+          $ref: '#/definitions/Tag'
+  Config:
+    type: object
+    properties:
+      key:
+        type: string
+      value:
+        type: string
+  Driver:
+    type: object
+    required:
+    - type
+    - name
+    properties:
+      id:
+        type: string
+        format: uuid
+        readOnly: true
+      type:
+        type: string
+        maxLength: 32
+      name:
+        type: string
+      kind:
+        type: string
+        pattern: '^[\w\d\-]+$'
+        readOnly: true
+      config:
+        type: array
+        items:
+          $ref: '#/definitions/Config'
+      secrets:
+        type: array
+        items:
+          type: string
+      created-time:
+        type: integer
+        readOnly: true
+      modified-time:
+        type: integer
+        readOnly: true
+      status:
+        $ref: '#/definitions/Status'
+        readOnly: true
+      tags:
+        type: array
+        items:
+          $ref: '#/definitions/Tag'
+      reason:
+        type: array
+        items:
+          type: string
+  DriverType:
+    type: object
+    required:
+    - image
+    - name
+    properties:
+      id:
+        type: string
+        format: uuid
+        readOnly: true
+      name:
+        type: string
+        maxLength: 32
+      kind:
+        type: string
+        pattern: '^[\w\d\-]+$'
+        readOnly: true
+      image:
+        type: string
+      built-in:
+        type: boolean
+        readOnly: true
+      config:
+        type: array
+        items:
+          $ref: '#/definitions/Config'
+      created-time:
+        type: integer
+        readOnly: true
+      modified-time:
+        type: integer
+        readOnly: true
+      tags:
+        type: array
+        items:
+          $ref: '#/definitions/Tag'
+  CloudEvent:
+    type: object
+    required:
+    - namespace
+    - event-type
+    - cloud-events-version
+    - source-type
+    - source-id
+    - event-id
+    properties:
+      namespace:
+        type: string
+      event-type:
+        type: string
+        maxLength: 128
+        pattern: '^[\w\d\-\.]+$'
+      event-type-version:
+        type: string
+      cloud-events-version:
+        type: string
+      source-type:
+        type: string
+      source-id:
+        type: string
+      event-id:
+        type: string
+      event-time:
+        type: string
+        format: date-time
+      schema-url:
+        type: string
+      content-type:
+        type: string
+      extensions:
+        type: object
+        additionalProperties:
+          type: object
+      data:
+        type: string
+  Error:
+    type: object
+    required:
+      - message
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+      user-error:
+        type: object
+      function-error:
+        type: object
+

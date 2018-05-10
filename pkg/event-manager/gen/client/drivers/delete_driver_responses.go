@@ -109,7 +109,7 @@ func NewDeleteDriverBadRequest() *DeleteDriverBadRequest {
 Invalid ID supplied
 */
 type DeleteDriverBadRequest struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *DeleteDriverBadRequest) Error() string {
@@ -118,7 +118,7 @@ func (o *DeleteDriverBadRequest) Error() string {
 
 func (o *DeleteDriverBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -138,7 +138,7 @@ func NewDeleteDriverNotFound() *DeleteDriverNotFound {
 Driver not found
 */
 type DeleteDriverNotFound struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *DeleteDriverNotFound) Error() string {
@@ -147,7 +147,7 @@ func (o *DeleteDriverNotFound) Error() string {
 
 func (o *DeleteDriverNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -167,7 +167,7 @@ func NewDeleteDriverInternalServerError() *DeleteDriverInternalServerError {
 Internal server error
 */
 type DeleteDriverInternalServerError struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *DeleteDriverInternalServerError) Error() string {
@@ -176,7 +176,7 @@ func (o *DeleteDriverInternalServerError) Error() string {
 
 func (o *DeleteDriverInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -200,7 +200,7 @@ Generic error response
 type DeleteDriverDefault struct {
 	_statusCode int
 
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 // Code gets the status code for the delete driver default response
@@ -214,7 +214,7 @@ func (o *DeleteDriverDefault) Error() string {
 
 func (o *DeleteDriverDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

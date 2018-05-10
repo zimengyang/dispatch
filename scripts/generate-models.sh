@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e -o pipefail
 
-: ${WORKDIR:="-o"}
+: ${WORKDIR:="/root/go/src/github.com/vmware/dispatch"}
 : ${CI_IMAGE:="vmware/dispatch-golang-ci:1.10-20180512"}
 : ${QUIET:="-q"}
 : ${PACKAGE:="github.com/vmware/dispatch/pkg/api/v1"}

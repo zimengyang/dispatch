@@ -87,7 +87,7 @@ func NewAddSubscriptionCreated() *AddSubscriptionCreated {
 Subscription created
 */
 type AddSubscriptionCreated struct {
-	Payload *v1.Subscription
+	Payload *v1.SubscriptionOAIGen
 }
 
 func (o *AddSubscriptionCreated) Error() string {
@@ -96,7 +96,7 @@ func (o *AddSubscriptionCreated) Error() string {
 
 func (o *AddSubscriptionCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Subscription)
+	o.Payload = new(v1.SubscriptionOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -116,7 +116,7 @@ func NewAddSubscriptionBadRequest() *AddSubscriptionBadRequest {
 Invalid input
 */
 type AddSubscriptionBadRequest struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *AddSubscriptionBadRequest) Error() string {
@@ -125,7 +125,7 @@ func (o *AddSubscriptionBadRequest) Error() string {
 
 func (o *AddSubscriptionBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -145,7 +145,7 @@ func NewAddSubscriptionUnauthorized() *AddSubscriptionUnauthorized {
 Unauthorized Request
 */
 type AddSubscriptionUnauthorized struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *AddSubscriptionUnauthorized) Error() string {
@@ -154,7 +154,7 @@ func (o *AddSubscriptionUnauthorized) Error() string {
 
 func (o *AddSubscriptionUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -174,7 +174,7 @@ func NewAddSubscriptionConflict() *AddSubscriptionConflict {
 Already Exists
 */
 type AddSubscriptionConflict struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *AddSubscriptionConflict) Error() string {
@@ -183,7 +183,7 @@ func (o *AddSubscriptionConflict) Error() string {
 
 func (o *AddSubscriptionConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -203,7 +203,7 @@ func NewAddSubscriptionInternalServerError() *AddSubscriptionInternalServerError
 Internal server error
 */
 type AddSubscriptionInternalServerError struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *AddSubscriptionInternalServerError) Error() string {
@@ -212,7 +212,7 @@ func (o *AddSubscriptionInternalServerError) Error() string {
 
 func (o *AddSubscriptionInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -236,7 +236,7 @@ Unknown error
 type AddSubscriptionDefault struct {
 	_statusCode int
 
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 // Code gets the status code for the add subscription default response
@@ -250,7 +250,7 @@ func (o *AddSubscriptionDefault) Error() string {
 
 func (o *AddSubscriptionDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

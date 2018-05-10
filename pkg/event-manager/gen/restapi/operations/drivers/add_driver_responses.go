@@ -74,7 +74,7 @@ type AddDriverBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewAddDriverBadRequest creates AddDriverBadRequest with default headers values
@@ -84,13 +84,13 @@ func NewAddDriverBadRequest() *AddDriverBadRequest {
 }
 
 // WithPayload adds the payload to the add driver bad request response
-func (o *AddDriverBadRequest) WithPayload(payload *v1.Error) *AddDriverBadRequest {
+func (o *AddDriverBadRequest) WithPayload(payload *v1.ErrorOAIGen) *AddDriverBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the add driver bad request response
-func (o *AddDriverBadRequest) SetPayload(payload *v1.Error) {
+func (o *AddDriverBadRequest) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -118,7 +118,7 @@ type AddDriverUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewAddDriverUnauthorized creates AddDriverUnauthorized with default headers values
@@ -128,13 +128,13 @@ func NewAddDriverUnauthorized() *AddDriverUnauthorized {
 }
 
 // WithPayload adds the payload to the add driver unauthorized response
-func (o *AddDriverUnauthorized) WithPayload(payload *v1.Error) *AddDriverUnauthorized {
+func (o *AddDriverUnauthorized) WithPayload(payload *v1.ErrorOAIGen) *AddDriverUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the add driver unauthorized response
-func (o *AddDriverUnauthorized) SetPayload(payload *v1.Error) {
+func (o *AddDriverUnauthorized) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -162,7 +162,7 @@ type AddDriverConflict struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewAddDriverConflict creates AddDriverConflict with default headers values
@@ -172,13 +172,13 @@ func NewAddDriverConflict() *AddDriverConflict {
 }
 
 // WithPayload adds the payload to the add driver conflict response
-func (o *AddDriverConflict) WithPayload(payload *v1.Error) *AddDriverConflict {
+func (o *AddDriverConflict) WithPayload(payload *v1.ErrorOAIGen) *AddDriverConflict {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the add driver conflict response
-func (o *AddDriverConflict) SetPayload(payload *v1.Error) {
+func (o *AddDriverConflict) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -206,7 +206,7 @@ type AddDriverInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewAddDriverInternalServerError creates AddDriverInternalServerError with default headers values
@@ -216,13 +216,13 @@ func NewAddDriverInternalServerError() *AddDriverInternalServerError {
 }
 
 // WithPayload adds the payload to the add driver internal server error response
-func (o *AddDriverInternalServerError) WithPayload(payload *v1.Error) *AddDriverInternalServerError {
+func (o *AddDriverInternalServerError) WithPayload(payload *v1.ErrorOAIGen) *AddDriverInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the add driver internal server error response
-func (o *AddDriverInternalServerError) SetPayload(payload *v1.Error) {
+func (o *AddDriverInternalServerError) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -248,7 +248,7 @@ type AddDriverDefault struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewAddDriverDefault creates AddDriverDefault with default headers values
@@ -274,13 +274,13 @@ func (o *AddDriverDefault) SetStatusCode(code int) {
 }
 
 // WithPayload adds the payload to the add driver default response
-func (o *AddDriverDefault) WithPayload(payload *v1.Error) *AddDriverDefault {
+func (o *AddDriverDefault) WithPayload(payload *v1.ErrorOAIGen) *AddDriverDefault {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the add driver default response
-func (o *AddDriverDefault) SetPayload(payload *v1.Error) {
+func (o *AddDriverDefault) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 

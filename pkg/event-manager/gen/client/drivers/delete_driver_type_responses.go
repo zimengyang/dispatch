@@ -109,7 +109,7 @@ func NewDeleteDriverTypeBadRequest() *DeleteDriverTypeBadRequest {
 Invalid ID supplied
 */
 type DeleteDriverTypeBadRequest struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *DeleteDriverTypeBadRequest) Error() string {
@@ -118,7 +118,7 @@ func (o *DeleteDriverTypeBadRequest) Error() string {
 
 func (o *DeleteDriverTypeBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -138,7 +138,7 @@ func NewDeleteDriverTypeNotFound() *DeleteDriverTypeNotFound {
 Driver not found
 */
 type DeleteDriverTypeNotFound struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *DeleteDriverTypeNotFound) Error() string {
@@ -147,7 +147,7 @@ func (o *DeleteDriverTypeNotFound) Error() string {
 
 func (o *DeleteDriverTypeNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -167,7 +167,7 @@ func NewDeleteDriverTypeInternalServerError() *DeleteDriverTypeInternalServerErr
 Internal server error
 */
 type DeleteDriverTypeInternalServerError struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *DeleteDriverTypeInternalServerError) Error() string {
@@ -176,7 +176,7 @@ func (o *DeleteDriverTypeInternalServerError) Error() string {
 
 func (o *DeleteDriverTypeInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

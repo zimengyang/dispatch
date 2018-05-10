@@ -30,7 +30,7 @@ type UpdateSubscriptionOK struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Subscription `json:"body,omitempty"`
+	Payload *v1.SubscriptionOAIGen `json:"body,omitempty"`
 }
 
 // NewUpdateSubscriptionOK creates UpdateSubscriptionOK with default headers values
@@ -40,13 +40,13 @@ func NewUpdateSubscriptionOK() *UpdateSubscriptionOK {
 }
 
 // WithPayload adds the payload to the update subscription o k response
-func (o *UpdateSubscriptionOK) WithPayload(payload *v1.Subscription) *UpdateSubscriptionOK {
+func (o *UpdateSubscriptionOK) WithPayload(payload *v1.SubscriptionOAIGen) *UpdateSubscriptionOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update subscription o k response
-func (o *UpdateSubscriptionOK) SetPayload(payload *v1.Subscription) {
+func (o *UpdateSubscriptionOK) SetPayload(payload *v1.SubscriptionOAIGen) {
 	o.Payload = payload
 }
 
@@ -74,7 +74,7 @@ type UpdateSubscriptionBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewUpdateSubscriptionBadRequest creates UpdateSubscriptionBadRequest with default headers values
@@ -84,13 +84,13 @@ func NewUpdateSubscriptionBadRequest() *UpdateSubscriptionBadRequest {
 }
 
 // WithPayload adds the payload to the update subscription bad request response
-func (o *UpdateSubscriptionBadRequest) WithPayload(payload *v1.Error) *UpdateSubscriptionBadRequest {
+func (o *UpdateSubscriptionBadRequest) WithPayload(payload *v1.ErrorOAIGen) *UpdateSubscriptionBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update subscription bad request response
-func (o *UpdateSubscriptionBadRequest) SetPayload(payload *v1.Error) {
+func (o *UpdateSubscriptionBadRequest) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -118,7 +118,7 @@ type UpdateSubscriptionNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewUpdateSubscriptionNotFound creates UpdateSubscriptionNotFound with default headers values
@@ -128,13 +128,13 @@ func NewUpdateSubscriptionNotFound() *UpdateSubscriptionNotFound {
 }
 
 // WithPayload adds the payload to the update subscription not found response
-func (o *UpdateSubscriptionNotFound) WithPayload(payload *v1.Error) *UpdateSubscriptionNotFound {
+func (o *UpdateSubscriptionNotFound) WithPayload(payload *v1.ErrorOAIGen) *UpdateSubscriptionNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update subscription not found response
-func (o *UpdateSubscriptionNotFound) SetPayload(payload *v1.Error) {
+func (o *UpdateSubscriptionNotFound) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -162,7 +162,7 @@ type UpdateSubscriptionInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewUpdateSubscriptionInternalServerError creates UpdateSubscriptionInternalServerError with default headers values
@@ -172,13 +172,13 @@ func NewUpdateSubscriptionInternalServerError() *UpdateSubscriptionInternalServe
 }
 
 // WithPayload adds the payload to the update subscription internal server error response
-func (o *UpdateSubscriptionInternalServerError) WithPayload(payload *v1.Error) *UpdateSubscriptionInternalServerError {
+func (o *UpdateSubscriptionInternalServerError) WithPayload(payload *v1.ErrorOAIGen) *UpdateSubscriptionInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update subscription internal server error response
-func (o *UpdateSubscriptionInternalServerError) SetPayload(payload *v1.Error) {
+func (o *UpdateSubscriptionInternalServerError) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 
@@ -204,7 +204,7 @@ type UpdateSubscriptionDefault struct {
 	/*
 	  In: Body
 	*/
-	Payload *v1.Error `json:"body,omitempty"`
+	Payload *v1.ErrorOAIGen `json:"body,omitempty"`
 }
 
 // NewUpdateSubscriptionDefault creates UpdateSubscriptionDefault with default headers values
@@ -230,13 +230,13 @@ func (o *UpdateSubscriptionDefault) SetStatusCode(code int) {
 }
 
 // WithPayload adds the payload to the update subscription default response
-func (o *UpdateSubscriptionDefault) WithPayload(payload *v1.Error) *UpdateSubscriptionDefault {
+func (o *UpdateSubscriptionDefault) WithPayload(payload *v1.ErrorOAIGen) *UpdateSubscriptionDefault {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update subscription default response
-func (o *UpdateSubscriptionDefault) SetPayload(payload *v1.Error) {
+func (o *UpdateSubscriptionDefault) SetPayload(payload *v1.ErrorOAIGen) {
 	o.Payload = payload
 }
 

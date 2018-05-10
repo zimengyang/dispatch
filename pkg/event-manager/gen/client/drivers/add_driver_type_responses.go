@@ -116,7 +116,7 @@ func NewAddDriverTypeBadRequest() *AddDriverTypeBadRequest {
 Invalid input
 */
 type AddDriverTypeBadRequest struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *AddDriverTypeBadRequest) Error() string {
@@ -125,7 +125,7 @@ func (o *AddDriverTypeBadRequest) Error() string {
 
 func (o *AddDriverTypeBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -145,7 +145,7 @@ func NewAddDriverTypeUnauthorized() *AddDriverTypeUnauthorized {
 Unauthorized Request
 */
 type AddDriverTypeUnauthorized struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *AddDriverTypeUnauthorized) Error() string {
@@ -154,7 +154,7 @@ func (o *AddDriverTypeUnauthorized) Error() string {
 
 func (o *AddDriverTypeUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -174,7 +174,7 @@ func NewAddDriverTypeConflict() *AddDriverTypeConflict {
 Already Exists
 */
 type AddDriverTypeConflict struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *AddDriverTypeConflict) Error() string {
@@ -183,7 +183,7 @@ func (o *AddDriverTypeConflict) Error() string {
 
 func (o *AddDriverTypeConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -203,7 +203,7 @@ func NewAddDriverTypeInternalServerError() *AddDriverTypeInternalServerError {
 Internal server error
 */
 type AddDriverTypeInternalServerError struct {
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 func (o *AddDriverTypeInternalServerError) Error() string {
@@ -212,7 +212,7 @@ func (o *AddDriverTypeInternalServerError) Error() string {
 
 func (o *AddDriverTypeInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -236,7 +236,7 @@ Unknown error
 type AddDriverTypeDefault struct {
 	_statusCode int
 
-	Payload *v1.Error
+	Payload *v1.ErrorOAIGen
 }
 
 // Code gets the status code for the add driver type default response
@@ -250,7 +250,7 @@ func (o *AddDriverTypeDefault) Error() string {
 
 func (o *AddDriverTypeDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(v1.Error)
+	o.Payload = new(v1.ErrorOAIGen)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
