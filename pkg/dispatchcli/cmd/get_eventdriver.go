@@ -112,7 +112,7 @@ func formatEventDriverOutput(out io.Writer, list bool, drivers []*v1.EventDriver
 			*d.Name, *d.Type, fmt.Sprintf("%s", d.Status),
 			strings.Join(d.Secrets, ","),
 			strings.Join(configs, "\n"),
-			strings.Join(d.Reason, " > "),
+			strings.Join(d.Reason, ": "),
 		})
 	}
 	table.Render()

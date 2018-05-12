@@ -5,8 +5,6 @@
 
 package drivers
 
-import "reflect"
-
 const (
 	errReasonDeploymentNotFound      = "DeploymentNotFound"
 	errReasonDeploymentAlreadyExists = "DeploymentAlreadyExists"
@@ -14,15 +12,12 @@ const (
 	errReasonUnknown                 = "Unknown"
 )
 
-var (
-	// ErrorTypeToErrorReason maps error type to error reason
-	ErrorTypeToErrorReason = map[reflect.Type]string{
-		reflect.TypeOf(&EventdriverErrorDeploymentNotFound{}):      errReasonDeploymentNotFound,
-		reflect.TypeOf(&EventdriverErrorDeploymentNotAvaialble{}):  errReasonDeploymentNotAvaialble,
-		reflect.TypeOf(&EventdriverErrorDeploymentAlreadyExists{}): errReasonDeploymentAlreadyExists,
-		reflect.TypeOf(&EventdriverErrorUnknown{}):                 errReasonUnknown,
-	}
-)
+// Causer defines interface for eventdriver error
+type Causer interface {
+
+	// Cause() returns the underlying cause error
+	Cause() error
+}
 
 // EventdriverErrorDeploymentNotFound defines deployment not found error for event driver
 type EventdriverErrorDeploymentNotFound struct {
@@ -30,16 +25,24 @@ type EventdriverErrorDeploymentNotFound struct {
 }
 
 func (err *EventdriverErrorDeploymentNotFound) Error() string {
-	return err.Err.Error()
+	return errReasonDeploymentNotFound
 }
 
-// EventdriverErrorDeploymentNotAvaialble defines image pull error for event driver
+func (err *EventdriverErrorDeploymentNotFound) Cause() error {
+	return err.Err
+}
+
+// EventdriverErrorDeploymentNotAvaialble defines deployment not available error for event driver
 type EventdriverErrorDeploymentNotAvaialble struct {
 	Err error `json:"err"`
 }
 
 func (err *EventdriverErrorDeploymentNotAvaialble) Error() string {
-	return err.Err.Error()
+	return errReasonDeploymentNotAvaialble
+}
+
+func (err *EventdriverErrorDeploymentNotAvaialble) Cause() error {
+	return err.Err
 }
 
 // EventdriverErrorDeploymentAlreadyExists defines deployment already exists error for event driver
@@ -48,7 +51,11 @@ type EventdriverErrorDeploymentAlreadyExists struct {
 }
 
 func (err *EventdriverErrorDeploymentAlreadyExists) Error() string {
-	return err.Err.Error()
+	return errReasonDeploymentAlreadyExists
+}
+
+func (err *EventdriverErrorDeploymentAlreadyExists) Cause() error {
+	return err.Err
 }
 
 // EventdriverErrorUnknown defines unknonwn error for event driver
@@ -57,5 +64,9 @@ type EventdriverErrorUnknown struct {
 }
 
 func (err *EventdriverErrorUnknown) Error() string {
-	return err.Err.Error()
+	return errReasonUnknown
+}
+
+func (err *EventdriverErrorUnknown) Cause() error {
+	return err.Err
 }

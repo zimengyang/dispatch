@@ -12,6 +12,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+	"time"
+
+	"github.com/vmware/dispatch/pkg/entity-store"
 
 	apiclient "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
@@ -31,16 +34,19 @@ import (
 	"github.com/vmware/dispatch/pkg/event-manager/drivers/entities"
 	secretsclient "github.com/vmware/dispatch/pkg/secret-store/gen/client"
 	"github.com/vmware/dispatch/pkg/secret-store/gen/client/secret"
+	"github.com/vmware/dispatch/pkg/utils"
 )
 
 const (
-	eventDriverLabel = "event-driver"
+	eventDriverLabel     = "event-driver"
+	defaultDeployTimeout = 10 // seconds
 )
 
 type k8sBackend struct {
 	clientset     *kubernetes.Clientset
 	config        ConfigOpts
 	secretsClient *secretsclient.SecretStore
+	DeployTimeout int
 }
 
 // NewK8sBackend creates a new K8s backend driver
@@ -68,6 +74,7 @@ func NewK8sBackend(config ConfigOpts) (Backend, error) {
 		clientset:     clientset,
 		config:        config,
 		secretsClient: SecretStoreClient(config.SecretStoreURL),
+		DeployTimeout: defaultDeployTimeout,
 	}, nil
 }
 
@@ -177,7 +184,29 @@ func (k *k8sBackend) Deploy(driver *entities.Driver) error {
 		log.Debugf("k8s: json marshal error")
 	}
 
-	return nil
+	return utils.Backoff(time.Duration(k.DeployTimeout)*time.Second, func() error {
+		fullname := getDriverFullName(driver)
+		deployment, err := k.clientset.AppsV1beta1().Deployments(k.config.DriverNamespace).Get(fullname, metav1.GetOptions{})
+
+		if err != nil {
+			if k8serrors.IsNotFound(err) {
+				return &EventdriverErrorDeploymentNotFound{
+					Err: ewrapper.Wrapf(err, "k8s: deployment=%s not found", fullname),
+				}
+			}
+			return &EventdriverErrorUnknown{
+				Err: ewrapper.Wrapf(err, "k8s: deployment=%s unexpected error", fullname),
+			}
+		}
+
+		if deployment.Status.AvailableReplicas > 0 {
+			return nil
+		}
+
+		return &EventdriverErrorDeploymentNotAvaialble{
+			Err: ewrapper.Errorf("k8s: deployment=%s not available", fullname),
+		}
+	})
 }
 
 func isEventDriver(deployment *v1beta1.Deployment) bool {
@@ -246,23 +275,50 @@ func (k *k8sBackend) Update(driver *entities.Driver) error {
 		log.Errorln(err)
 		return err
 	}
+	fullname := getDriverFullName(driver)
 
-	result, err := k.clientset.ExtensionsV1beta1().Deployments(k.config.DriverNamespace).Update(deploymentSpec)
-	if err != nil {
-		err = &errors.DriverError{
-			Err: ewrapper.Wrapf(err, "k8s: error updating a deployment"),
+	if driver.GetStatus() == entitystore.StatusREADY {
+		// In READY status, check avaiable replicasets
+		deployment, err := k.clientset.AppsV1beta1().Deployments(k.config.DriverNamespace).Get(fullname, metav1.GetOptions{})
+		if err != nil {
+			if k8serrors.IsNotFound(err) {
+				err = &EventdriverErrorDeploymentNotFound{
+					Err: ewrapper.Wrapf(err, "k8s: deployment=%s not found", fullname),
+				}
+			} else {
+				err = &EventdriverErrorUnknown{
+					Err: ewrapper.Wrapf(err, "k8s: deployment=%s unexpected error", fullname),
+				}
+			}
+			log.Errorln(err)
+			return err
 		}
-		log.Errorln(err)
-		return err
-	}
-
-	if output, err := json.MarshalIndent(result, "", "  "); err == nil {
-		log.Debugf("k8s: updating deployment\n%s\n", output)
+		if deployment.Status.AvailableReplicas == 0 {
+			err = &EventdriverErrorDeploymentNotAvaialble{
+				Err: ewrapper.Errorf("k8s: deployment=%s not available", fullname),
+			}
+			log.Errorln(err)
+			return err
+		}
 	} else {
-		log.Debugf("k8s: json marshal error")
+		// Otherwise (UPDATING status), do backend deployment Update()
+		result, err := k.clientset.ExtensionsV1beta1().Deployments(k.config.DriverNamespace).Update(deploymentSpec)
+		if err != nil {
+			err = &errors.DriverError{
+				Err: ewrapper.Wrapf(err, "k8s: error updating a deployment"),
+			}
+			log.Errorln(err)
+			return err
+		}
+
+		if output, err := json.MarshalIndent(result, "", "  "); err == nil {
+			log.Debugf("k8s: updating deployment\n%s\n", output)
+		} else {
+			log.Debugf("k8s: json marshal error")
+		}
 	}
 
-	log.Debugf("k8s: deployment=%s updated", getDriverFullName(driver))
+	log.Debugf("k8s: deployment=%s updated", fullname)
 
 	return nil
 }
