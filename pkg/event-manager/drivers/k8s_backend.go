@@ -186,7 +186,7 @@ func (k *k8sBackend) Deploy(driver *entities.Driver) error {
 
 	return utils.Backoff(time.Duration(k.DeployTimeout)*time.Second, func() error {
 		fullname := getDriverFullName(driver)
-		deployment, err := k.clientset.AppsV1beta1().Deployments(k.config.DriverNamespace).Get(fullname, metav1.GetOptions{})
+		deployment, err := k.clientset.ExtensionsV1beta1().Deployments(k.config.DriverNamespace).Get(fullname, metav1.GetOptions{})
 
 		if err != nil {
 			if k8serrors.IsNotFound(err) {
@@ -204,7 +204,7 @@ func (k *k8sBackend) Deploy(driver *entities.Driver) error {
 		}
 
 		return &EventdriverErrorDeploymentNotAvaialble{
-			Err: ewrapper.Errorf("k8s: deployment=%s not available", fullname),
+			Err: ewrapper.Errorf("k8s: deployment=%s not available, pulling status", fullname),
 		}
 	})
 }
@@ -277,9 +277,25 @@ func (k *k8sBackend) Update(driver *entities.Driver) error {
 	}
 	fullname := getDriverFullName(driver)
 
-	if driver.GetStatus() == entitystore.StatusREADY {
-		// In READY status, check avaiable replicasets
-		deployment, err := k.clientset.AppsV1beta1().Deployments(k.config.DriverNamespace).Get(fullname, metav1.GetOptions{})
+	if driver.GetStatus() == entitystore.StatusUPDATING {
+		// In UPDATING status, do backend deployment Update()
+		result, err := k.clientset.ExtensionsV1beta1().Deployments(k.config.DriverNamespace).Update(deploymentSpec)
+		if err != nil {
+			err = &errors.DriverError{
+				Err: ewrapper.Wrapf(err, "k8s: error updating a deployment"),
+			}
+			log.Errorln(err)
+			return err
+		}
+
+		if output, err := json.MarshalIndent(result, "", "  "); err == nil {
+			log.Debugf("k8s: updating deployment\n%s\n", output)
+		} else {
+			log.Debugf("k8s: json marshal error")
+		}
+	} else {
+		// check avaiable replicasets
+		deployment, err := k.clientset.ExtensionsV1beta1().Deployments(k.config.DriverNamespace).Get(fullname, metav1.GetOptions{})
 		if err != nil {
 			if k8serrors.IsNotFound(err) {
 				err = &EventdriverErrorDeploymentNotFound{
@@ -294,27 +310,42 @@ func (k *k8sBackend) Update(driver *entities.Driver) error {
 			return err
 		}
 		if deployment.Status.AvailableReplicas == 0 {
+			// Try to get reason from pod
+			// TODO: better way of getting pod for a deployment
+			pods, err := k.clientset.CoreV1().Pods(k.config.DriverNamespace).List(metav1.ListOptions{
+				LabelSelector: "app=" + eventDriverLabel,
+			})
+			if err != nil {
+				log.Errorln(err)
+			} else {
+				for _, pod := range pods.Items {
+					if strings.Contains(pod.Name, fullname) {
+						for _, containerStatus := range pod.Status.ContainerStatuses {
+							if containerStatus.Name == "driver" {
+								if containerStatus.State.Waiting != nil {
+									waiting := containerStatus.State.Waiting
+									err = &EventdriverErrorDeploymentNotAvaialble{
+										Err: ewrapper.Errorf("k8s: deployment `%s` is `waiting`: %s, %s", fullname, waiting.Reason, waiting.Message),
+									}
+								} else if containerStatus.State.Terminated != nil {
+									terminated := containerStatus.State.Terminated
+									err = &EventdriverErrorDeploymentNotAvaialble{
+										Err: ewrapper.Errorf("k8s: deployment `%s` is `terminated`: %s, %s", fullname, terminated.Reason, terminated.Message),
+									}
+								}
+
+								log.Errorln(err)
+								return err
+							}
+						}
+					}
+				}
+			}
 			err = &EventdriverErrorDeploymentNotAvaialble{
 				Err: ewrapper.Errorf("k8s: deployment=%s not available", fullname),
 			}
 			log.Errorln(err)
 			return err
-		}
-	} else {
-		// Otherwise (UPDATING status), do backend deployment Update()
-		result, err := k.clientset.ExtensionsV1beta1().Deployments(k.config.DriverNamespace).Update(deploymentSpec)
-		if err != nil {
-			err = &errors.DriverError{
-				Err: ewrapper.Wrapf(err, "k8s: error updating a deployment"),
-			}
-			log.Errorln(err)
-			return err
-		}
-
-		if output, err := json.MarshalIndent(result, "", "  "); err == nil {
-			log.Debugf("k8s: updating deployment\n%s\n", output)
-		} else {
-			log.Debugf("k8s: json marshal error")
 		}
 	}
 

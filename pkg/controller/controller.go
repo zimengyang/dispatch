@@ -127,9 +127,7 @@ func (dc *DefaultController) processItem(e entitystore.Entity) error {
 	if !ok {
 		return errors.Errorf("trying to process an entity with no entity handler: %v", reflect.TypeOf(e))
 	}
-	if e.GetDelete() {
-		return h.Delete(e)
-	}
+
 	switch e.GetStatus() {
 	case entitystore.StatusERROR:
 		err = h.Error(e)

@@ -7,6 +7,7 @@ package drivers
 
 import (
 	"reflect"
+	"strings"
 	"time"
 
 	ewrapper "github.com/pkg/errors"
@@ -84,6 +85,7 @@ func (h *EntityHandler) Delete(obj entitystore.Entity) error {
 	defer trace.Tracef("name '%s'", obj.GetName())()
 
 	driver := obj.(*entities.Driver)
+	driver.SetDelete(true)
 
 	// delete the deployment from k8s cluster
 	err := h.backend.Delete(driver)
@@ -137,20 +139,23 @@ func (h *EntityHandler) Error(obj entitystore.Entity) error {
 	recover := false
 	switch driver.GetReason()[0] {
 	case errReasonDeploymentNotFound:
-		// TODO
-	case errReasonDeploymentAlreadyExists:
-		// TODO
-	case errReasonDeploymentNotAvaialble:
-		// TODO
+		if driver.GetDelete() {
+			// in DELETE status, delete driver entity
+			log.Debugf("%s in delete state, deployment not found, delete entity")
+			h.store.Delete(driver.OrganizationID, driver.Name, driver)
+			recover = true
+		}
+	case errReasonDeploymentAlreadyExists, errReasonDeploymentNotAvaialble:
+		// do update
+		h.Update(driver)
 	default:
-		// TODO
-		log.Debug("unknown error")
+		log.Debug("other error")
 	}
 
 	if recover {
 		log.Debugf("%s recovered", driver.Name)
 	} else {
-		log.Debugf("%s failed to recover", driver.Name)
+		log.Debugf("%s failed to recover: %s", driver.Name, strings.Join(driver.GetReason(), ", "))
 	}
 
 	return err
@@ -167,6 +172,7 @@ func translateErrorToEntityState(driver *entities.Driver, e error) {
 	}
 	if c, ok := e.(Causer); ok {
 		log.Debugf("%s -- underlying error reason: %s", driver.GetName(), c.Cause().Error())
+		reason = append(reason, c.Cause().Error())
 	}
 	driver.SetReason(reason)
 	driver.SetStatus(entitystore.StatusERROR)

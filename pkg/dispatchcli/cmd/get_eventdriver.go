@@ -108,11 +108,15 @@ func formatEventDriverOutput(out io.Writer, list bool, drivers []*v1.EventDriver
 				configs = append(configs, fmt.Sprintf("%s=%s", c.Key, c.Value))
 			}
 		}
+		reason := d.Reason
+		if len(reason) > 1 {
+			reason = reason[1:]
+		}
 		table.Append([]string{
 			*d.Name, *d.Type, fmt.Sprintf("%s", d.Status),
 			strings.Join(d.Secrets, ","),
 			strings.Join(configs, "\n"),
-			strings.Join(d.Reason, ": "),
+			strings.Join(reason, ": "),
 		})
 	}
 	table.Render()
