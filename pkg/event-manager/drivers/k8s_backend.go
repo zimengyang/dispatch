@@ -12,6 +12,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+	"time"
+
+	"github.com/vmware/dispatch/pkg/entity-store"
 
 	apiclient "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
@@ -31,12 +34,19 @@ import (
 	"github.com/vmware/dispatch/pkg/event-manager/drivers/entities"
 	secretsclient "github.com/vmware/dispatch/pkg/secret-store/gen/client"
 	"github.com/vmware/dispatch/pkg/secret-store/gen/client/secret"
+	"github.com/vmware/dispatch/pkg/utils"
+)
+
+const (
+	eventDriverLabel     = "event-driver"
+	defaultDeployTimeout = 10 // seconds
 )
 
 type k8sBackend struct {
 	clientset     *kubernetes.Clientset
 	config        ConfigOpts
 	secretsClient *secretsclient.SecretStore
+	DeployTimeout int
 }
 
 // NewK8sBackend creates a new K8s backend driver
@@ -64,6 +74,7 @@ func NewK8sBackend(config ConfigOpts) (Backend, error) {
 		clientset:     clientset,
 		config:        config,
 		secretsClient: SecretStoreClient(config.SecretStoreURL),
+		DeployTimeout: defaultDeployTimeout,
 	}, nil
 }
 
@@ -116,7 +127,7 @@ func (k *k8sBackend) makeDeploymentSpec(driver *entities.Driver) (*v1beta1.Deplo
 				ObjectMeta: metav1.ObjectMeta{
 					Name: fullname,
 					Labels: map[string]string{
-						"app": "event-driver",
+						"app": eventDriverLabel,
 					},
 				},
 				Spec: corev1.PodSpec{
@@ -158,8 +169,10 @@ func (k *k8sBackend) Deploy(driver *entities.Driver) error {
 
 	result, err := k.clientset.ExtensionsV1beta1().Deployments(k.config.DriverNamespace).Create(deploymentSpec)
 	if err != nil {
-		err = &errors.DriverError{
-			Err: ewrapper.Wrapf(err, "k8s: error creating a deployment"),
+		if k8serrors.IsAlreadyExists(err) {
+			err = &EventdriverErrorDeploymentAlreadyExists{
+				Err: ewrapper.Wrapf(err, "k8s: error creating a deployment"),
+			}
 		}
 		log.Errorln(err)
 		return err
@@ -171,14 +184,35 @@ func (k *k8sBackend) Deploy(driver *entities.Driver) error {
 		log.Debugf("k8s: json marshal error")
 	}
 
-	log.Debugf("k8s: deployment=%s created", getDriverFullName(driver))
-	return nil
+	return utils.Backoff(time.Duration(k.DeployTimeout)*time.Second, func() error {
+		fullname := getDriverFullName(driver)
+		deployment, err := k.clientset.ExtensionsV1beta1().Deployments(k.config.DriverNamespace).Get(fullname, metav1.GetOptions{})
+
+		if err != nil {
+			if k8serrors.IsNotFound(err) {
+				return &EventdriverErrorDeploymentNotFound{
+					Err: ewrapper.Wrapf(err, "k8s: deployment=%s not found", fullname),
+				}
+			}
+			return &EventdriverErrorUnknown{
+				Err: ewrapper.Wrapf(err, "k8s: deployment=%s unexpected error", fullname),
+			}
+		}
+
+		if deployment.Status.AvailableReplicas > 0 {
+			return nil
+		}
+
+		return &EventdriverErrorDeploymentNotAvaialble{
+			Err: ewrapper.Errorf("k8s: deployment=%s not available, pulling status", fullname),
+		}
+	})
 }
 
 func isEventDriver(deployment *v1beta1.Deployment) bool {
 	if deployment != nil {
 		val, ok := deployment.Labels["app"]
-		if ok && val == "event-driver" {
+		if ok && val == eventDriverLabel {
 			return true
 		}
 	}
@@ -192,12 +226,12 @@ func (k *k8sBackend) Delete(driver *entities.Driver) error {
 	deployment, err := k.clientset.ExtensionsV1beta1().Deployments(k.config.DriverNamespace).Get(fullname, metav1.GetOptions{})
 	if err != nil {
 		if k8serrors.IsNotFound(err) {
-			err = &errors.ObjectNotFoundError{
+			err = &EventdriverErrorDeploymentNotFound{
 				Err: ewrapper.Wrapf(err, "k8s: deployment=%s not found", fullname),
 			}
 		} else {
-			err = &errors.DriverError{
-				Err: ewrapper.Wrapf(err, "k8s: deployment=%s unexpected error"),
+			err = &EventdriverErrorUnknown{
+				Err: ewrapper.Wrapf(err, "k8s: deployment=%s unexpected error", fullname),
 			}
 		}
 		log.Errorln(err)
@@ -206,7 +240,7 @@ func (k *k8sBackend) Delete(driver *entities.Driver) error {
 
 	if !isEventDriver(deployment) {
 		err = &errors.DriverError{
-			Err: ewrapper.Wrapf(err, "k8s: deployment=%s: deleting a NON-event-driver deployment"),
+			Err: ewrapper.Wrapf(err, "k8s: deployment=%s: deleting a NON-event-driver deployment", fullname),
 		}
 		return err
 	}
@@ -223,7 +257,7 @@ func (k *k8sBackend) Delete(driver *entities.Driver) error {
 			}
 		} else {
 			err = &errors.DriverError{
-				Err: ewrapper.Wrapf(err, "k8s: deployment=%s unexpected error"),
+				Err: ewrapper.Wrapf(err, "k8s: deployment=%s unexpected error", fullname),
 			}
 		}
 		log.Errorln(err)
@@ -241,23 +275,81 @@ func (k *k8sBackend) Update(driver *entities.Driver) error {
 		log.Errorln(err)
 		return err
 	}
+	fullname := getDriverFullName(driver)
 
-	result, err := k.clientset.ExtensionsV1beta1().Deployments(k.config.DriverNamespace).Update(deploymentSpec)
-	if err != nil {
-		err = &errors.DriverError{
-			Err: ewrapper.Wrapf(err, "k8s: error updating a deployment"),
+	if driver.GetStatus() == entitystore.StatusUPDATING {
+		// In UPDATING status, do backend deployment Update()
+		result, err := k.clientset.ExtensionsV1beta1().Deployments(k.config.DriverNamespace).Update(deploymentSpec)
+		if err != nil {
+			err = &errors.DriverError{
+				Err: ewrapper.Wrapf(err, "k8s: error updating a deployment"),
+			}
+			log.Errorln(err)
+			return err
 		}
-		log.Errorln(err)
-		return err
-	}
 
-	if output, err := json.MarshalIndent(result, "", "  "); err == nil {
-		log.Debugf("k8s: updating deployment\n%s\n", output)
+		if output, err := json.MarshalIndent(result, "", "  "); err == nil {
+			log.Debugf("k8s: updating deployment\n%s\n", output)
+		} else {
+			log.Debugf("k8s: json marshal error")
+		}
 	} else {
-		log.Debugf("k8s: json marshal error")
+		// check avaiable replicasets
+		deployment, err := k.clientset.ExtensionsV1beta1().Deployments(k.config.DriverNamespace).Get(fullname, metav1.GetOptions{})
+		if err != nil {
+			if k8serrors.IsNotFound(err) {
+				err = &EventdriverErrorDeploymentNotFound{
+					Err: ewrapper.Wrapf(err, "k8s: deployment=%s not found", fullname),
+				}
+			} else {
+				err = &EventdriverErrorUnknown{
+					Err: ewrapper.Wrapf(err, "k8s: deployment=%s unexpected error", fullname),
+				}
+			}
+			log.Errorln(err)
+			return err
+		}
+		if deployment.Status.AvailableReplicas == 0 {
+			// Try to get reason from pod
+			// TODO: better way of getting pod for a deployment
+			pods, err := k.clientset.CoreV1().Pods(k.config.DriverNamespace).List(metav1.ListOptions{
+				LabelSelector: "app=" + eventDriverLabel,
+			})
+			if err != nil {
+				log.Errorln(err)
+			} else {
+				for _, pod := range pods.Items {
+					if strings.Contains(pod.Name, fullname) {
+						for _, containerStatus := range pod.Status.ContainerStatuses {
+							if containerStatus.Name == "driver" {
+								if containerStatus.State.Waiting != nil {
+									waiting := containerStatus.State.Waiting
+									err = &EventdriverErrorDeploymentNotAvaialble{
+										Err: ewrapper.Errorf("k8s: deployment `%s` is `waiting`: %s, %s", fullname, waiting.Reason, waiting.Message),
+									}
+								} else if containerStatus.State.Terminated != nil {
+									terminated := containerStatus.State.Terminated
+									err = &EventdriverErrorDeploymentNotAvaialble{
+										Err: ewrapper.Errorf("k8s: deployment `%s` is `terminated`: %s, %s", fullname, terminated.Reason, terminated.Message),
+									}
+								}
+
+								log.Errorln(err)
+								return err
+							}
+						}
+					}
+				}
+			}
+			err = &EventdriverErrorDeploymentNotAvaialble{
+				Err: ewrapper.Errorf("k8s: deployment=%s not available", fullname),
+			}
+			log.Errorln(err)
+			return err
+		}
 	}
 
-	log.Debugf("k8s: deployment=%s updated", getDriverFullName(driver))
+	log.Debugf("k8s: deployment=%s updated", fullname)
 
 	return nil
 }

@@ -47,28 +47,28 @@ paths:
         description: emission object
         required: true
         schema:
-          $ref: '#/definitions/Emission'
+          $ref: './models.json#/definitions/Emission'
       responses:
         200:
           description: Event emitted
           schema:
-            $ref: '#/definitions/Emission'
+            $ref: './models.json#/definitions/Emission'
         400:
           description: Invalid input
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         401:
           description: Unauthorized Request
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         500:
           description: Internal server error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         default:
           description: Unknown error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
   /subscriptions:
     post:
       tags:
@@ -85,32 +85,32 @@ paths:
         description: subscription object
         required: true
         schema:
-          $ref: '#/definitions/Subscription'
+          $ref: './models.json#/definitions/Subscription'
       responses:
         201:
           description: Subscription created
           schema:
-            $ref: '#/definitions/Subscription'
+            $ref: './models.json#/definitions/Subscription'
         400:
           description: Invalid input
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         401:
           description: Unauthorized Request
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         409:
           description: Already Exists
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         500:
           description: Internal server error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         default:
           description: Unknown error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
     get:
       tags:
       - subscriptions
@@ -132,19 +132,19 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Subscription'
+              $ref: './models.json#/definitions/Subscription'
         400:
           description: Bad Request
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         500:
           description: Internal server error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         default:
           description: Unknown error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
   /subscriptions/{subscriptionName}:
     parameters:
     - in: query
@@ -172,23 +172,23 @@ paths:
         200:
           description: Successful operation
           schema:
-            $ref: '#/definitions/Subscription'
+            $ref: './models.json#/definitions/Subscription'
         400:
           description: Invalid Name supplied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         404:
           description: Subscription not found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         500:
           description: Internal server error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         default:
           description: Unknown error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
     put:
       tags:
       - subscriptions
@@ -201,7 +201,7 @@ paths:
         description: subscription object
         required: true
         schema:
-          $ref: '#/definitions/Subscription'
+          $ref: './models.json#/definitions/Subscription'
       consumes:
       - application/json
       produces:
@@ -210,23 +210,23 @@ paths:
         200:
           description: Successful operation
           schema:
-            $ref: '#/definitions/Subscription'
+            $ref: './models.json#/definitions/Subscription'
         400:
           description: Invalid Name supplied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         404:
           description: Subscription not found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         500:
           description: Internal server error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         default:
           description: Unknown error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
     delete:
       tags:
       - subscriptions
@@ -238,23 +238,23 @@ paths:
         200:
           description: successful operation
           schema:
-            $ref: '#/definitions/Subscription'
+            $ref: './models.json#/definitions/Subscription'
         400:
           description: Invalid ID supplied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         404:
           description: Subscription not found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         500:
           description: Internal server error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         default:
           description: Generic error response
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
   /drivers:
     post:
       tags:
@@ -271,32 +271,32 @@ paths:
         description: driver object
         required: true
         schema:
-          $ref: '#/definitions/Driver'
+          $ref: './models.json#/definitions/EventDriver'
       responses:
         201:
           description: Driver created
           schema:
-            $ref: '#/definitions/Driver'
+            $ref: './models.json#/definitions/EventDriver'
         400:
           description: Invalid input
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         401:
           description: Unauthorized Request
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         409:
           description: Already Exists
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         500:
           description: Internal server error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         default:
           description: Unknown error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
     get:
       tags:
       - drivers
@@ -318,15 +318,15 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Driver'
+              $ref: './models.json#/definitions/EventDriver'
         500:
           description: Internal server error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         default:
           description: Unknown error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
   /drivers/{driverName}:
     parameters:
     - in: query
@@ -354,23 +354,23 @@ paths:
         200:
           description: Successful operation
           schema:
-            $ref: '#/definitions/Driver'
+            $ref: './models.json#/definitions/EventDriver'
         400:
           description: Invalid Name supplied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         404:
           description: Driver not found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         500:
           description: Internal server error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         default:
           description: Unknown error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
     put:
       tags:
       - drivers
@@ -383,32 +383,32 @@ paths:
         description: driver object
         required: true
         schema:
-          $ref: '#/definitions/Driver'
+          $ref: './models.json#/definitions/EventDriver'
       consumes:
       - application/json
       produces:
-      - application/json 
+      - application/json
       responses:
         200:
           description: Successful operation
           schema:
-            $ref: '#/definitions/Driver'
+            $ref: './models.json#/definitions/EventDriver'
         400:
           description: Invalid Name supplied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         404:
           description: Driver not found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         500:
           description: Internal server error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         default:
           description: Unknown error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
     delete:
       tags:
       - drivers
@@ -420,23 +420,23 @@ paths:
         200:
           description: successful operation
           schema:
-            $ref: '#/definitions/Driver'
+            $ref: './models.json#/definitions/EventDriver'
         400:
           description: Invalid ID supplied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         404:
           description: Driver not found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         500:
           description: Internal server error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         default:
           description: Generic error response
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
   /drivertypes:
     post:
       tags:
@@ -453,32 +453,32 @@ paths:
         description: driver type object
         required: true
         schema:
-          $ref: '#/definitions/DriverType'
+          $ref: './models.json#/definitions/EventDriverType'
       responses:
         201:
           description: Driver Type created
           schema:
-            $ref: '#/definitions/DriverType'
+            $ref: './models.json#/definitions/EventDriverType'
         400:
           description: Invalid input
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         401:
           description: Unauthorized Request
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         409:
           description: Already Exists
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         500:
           description: Internal server error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         default:
           description: Unknown error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
     get:
       tags:
       - drivers
@@ -500,15 +500,15 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/DriverType'
+              $ref: './models.json#/definitions/EventDriverType'
         500:
           description: Internal server error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         default:
           description: Unknown error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
   /drivertypes/{driverTypeName}:
     parameters:
     - in: query
@@ -536,23 +536,23 @@ paths:
         200:
           description: Successful operation
           schema:
-            $ref: '#/definitions/DriverType'
+            $ref: './models.json#/definitions/EventDriverType'
         400:
           description: Invalid Name supplied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         404:
           description: Driver not found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         500:
           description: Internal server error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         default:
           description: Unknown error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
     put:
       tags:
       - drivers
@@ -565,7 +565,7 @@ paths:
         description: driver object
         required: true
         schema:
-          $ref: '#/definitions/DriverType'
+          $ref: './models.json#/definitions/EventDriverType'
       consumes:
       - application/json
       produces:
@@ -574,23 +574,23 @@ paths:
         200:
           description: Successful operation
           schema:
-            $ref: '#/definitions/DriverType'
+            $ref: './models.json#/definitions/EventDriverType'
         400:
           description: Invalid Name supplied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         404:
           description: DriverType not found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         500:
           description: Internal server error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         default:
           description: Unknown error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
     delete:
       tags:
       - drivers
@@ -602,19 +602,19 @@ paths:
         200:
           description: successful operation
           schema:
-            $ref: '#/definitions/DriverType'
+            $ref: './models.json#/definitions/EventDriverType'
         400:
           description: Invalid ID supplied
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         404:
           description: Driver not found
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         500:
           description: Internal server error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: './models.json#/definitions/Error'
         default:
           description: Generic error response
           schema:
@@ -748,6 +748,10 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Tag'
+      reason:
+        type: array
+        items:
+          type: string
   DriverType:
     type: object
     required:

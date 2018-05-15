@@ -13,12 +13,12 @@ import (
 
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
+	"github.com/vmware/dispatch/pkg/api/v1"
 	"golang.org/x/net/context"
 
 	"github.com/vmware/dispatch/pkg/dispatchcli/cmd/utils"
 	"github.com/vmware/dispatch/pkg/dispatchcli/i18n"
 	client "github.com/vmware/dispatch/pkg/event-manager/gen/client/drivers"
-	models "github.com/vmware/dispatch/pkg/event-manager/gen/models"
 )
 
 var (
@@ -81,10 +81,10 @@ func getEventDriver(out, errOut io.Writer, cmd *cobra.Command, args []string) er
 		return formatAPIError(err, params)
 	}
 
-	return formatEventDriverOutput(out, false, []*models.Driver{get.Payload})
+	return formatEventDriverOutput(out, false, []*v1.EventDriver{get.Payload})
 }
 
-func formatEventDriverOutput(out io.Writer, list bool, drivers []*models.Driver) error {
+func formatEventDriverOutput(out io.Writer, list bool, drivers []*v1.EventDriver) error {
 
 	if dispatchConfig.JSON {
 		encoder := json.NewEncoder(out)
@@ -95,7 +95,7 @@ func formatEventDriverOutput(out io.Writer, list bool, drivers []*models.Driver)
 		return encoder.Encode(drivers[0])
 	}
 	table := tablewriter.NewWriter(out)
-	table.SetHeader([]string{"Name", "Type", "Status", "Secrets", "Config"})
+	table.SetHeader([]string{"Name", "Type", "Status", "Secrets", "Config", "Reason"})
 	table.SetBorders(tablewriter.Border{Left: false, Top: false, Right: false, Bottom: false})
 	table.SetCenterSeparator("-")
 	table.SetRowLine(true)
@@ -108,10 +108,15 @@ func formatEventDriverOutput(out io.Writer, list bool, drivers []*models.Driver)
 				configs = append(configs, fmt.Sprintf("%s=%s", c.Key, c.Value))
 			}
 		}
+		reason := d.Reason
+		if len(reason) > 1 {
+			reason = reason[1:]
+		}
 		table.Append([]string{
 			*d.Name, *d.Type, fmt.Sprintf("%s", d.Status),
 			strings.Join(d.Secrets, ","),
 			strings.Join(configs, "\n"),
+			strings.Join(reason, ": "),
 		})
 	}
 	table.Render()
